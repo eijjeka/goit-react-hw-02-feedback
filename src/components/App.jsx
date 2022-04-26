@@ -4,22 +4,21 @@ import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Statistics from './Statistics/Statistics';
 import Notification from './Notification/Notification';
 export default class App extends Component {
-
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
   };
 
-  onLeaveFeedback = (e) => {
+  onLeaveFeedback = e => {
     const name = e.target.name;
-    this.setState((prevState) => ({
-      [name]: prevState[name] + 1
+    this.setState(prevState => ({
+      [name]: prevState[name] + 1,
     }));
-  }
+  };
 
   countTotalFeedback = () => {
-    const { good, neutral, bad } = this.state;
+    const { geed, neutral, bad } = this.state;
     const result = good + neutral + bad;
     return result;
   };
@@ -31,7 +30,6 @@ export default class App extends Component {
   };
 
   render() {
-
     const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
     const objKey = Object.keys(this.state);
@@ -39,20 +37,27 @@ export default class App extends Component {
 
     return (
       <div className="feeadback__container">
-        <Section title='Please leave feedback'>
-
-          <FeedbackOptions options={objKey} onLeaveFeedback={this.onLeaveFeedback} />
-          
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={objKey}
+            onLeaveFeedback={this.onLeaveFeedback}
+          />
         </Section>
 
-        <Section title='Statistics'>
-
-          {total !== 0 ?
-            <Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage} />
-            : <Notification message="There is no feedback" />
-          }
+        <Section title="Statistics">
+          {total !== 0 ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={total}
+              positivePercentage={positivePercentage}
+            />
+          ) : (
+            <Notification message="There is no feedback" />
+          )}
         </Section>
       </div>
-    )
+    );
   }
 }
