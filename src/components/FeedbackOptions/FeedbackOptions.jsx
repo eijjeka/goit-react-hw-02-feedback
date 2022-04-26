@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const reedbackOptions = ({ options, onLeaveFeedback }) => {
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <ul className="feedback__controls">
        {options.map((option, index) => (
