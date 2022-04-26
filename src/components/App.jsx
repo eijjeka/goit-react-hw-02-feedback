@@ -11,7 +11,7 @@ export default class App extends Component {
     bad: 0,
   };
 
-  inLeaveFeedback = (e) => {
+  onLeaveFeedback = (e) => {
     const name = e.target.name;
     this.setState((prevState) => ({
       [name]: prevState[name] + 1
